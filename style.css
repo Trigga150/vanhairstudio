@@ -1,0 +1,134 @@
+/* General Reset */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+}
+
+/* Gradient Navbar & Footer */
+.bg-gradient {
+  background: linear-gradient(90deg, #ff65a3, #7afcff);
+}
+
+/* Loading Page */
+#loading-page {
+  height: 100vh;
+  background: linear-gradient(135deg, #7afcff, #ff65a3);
+  color: white;
+  text-align: center;
+}
+.loading-text {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.powered {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Carousel Captions */
+.carousel-caption h5 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.carousel-caption p {
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.btn-gradient {
+  background: linear-gradient(45deg, #ff65a3, #7afcff);
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+.btn-gradient:hover {
+  transform: scale(1.1);
+}
+
+/* Product Cards */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Cart Items */
+#cart-items {
+  max-width: 500px;
+  margin: 0 auto;
+}
+#cart-items li {
+  background: linear-gradient(90deg, #ff65a3, #7afcff);
+  color: white;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Remove Button */
+.remove-item {
+  background-color: #ff4d6d;
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.remove-item:hover {
+  transform: scale(1.1);
+}
+
+/* Clear Cart Button */
+#clear-cart {
+  background-color: #ffc107;
+  border: none;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+#clear-cart:hover {
+  transform: scale(1.1);
+}
+
+/* Floating Cart */
+#floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff65a3, #7afcff);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 9999;
+}
+#floating-cart:hover {
+  transform: scale(1.1);
+}
+#floating-cart-count {
+  background: #feff9c;
+  color: black;
+  font-size: 0.9rem;
+  padding: 3px 8px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #ff65a3, #7afcff);
+  color: white;
+  font-weight: bold;
+}
