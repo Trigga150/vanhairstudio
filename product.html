@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Van Studio | Products</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">Hair Van Studio</a>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Category Navigation -->
+  <section class="page">
+    <h2>Our Wig Collections</h2>
+    <p>Browse by category:</p>
+    <div class="category-nav">
+      <a href="#straight" class="btn">Straight</a>
+      <a href="#curly" class="btn">Curly</a>
+      <a href="#tpart" class="btn">T‑Part</a>
+    </div>
+  </section>
+
+  <!-- Straight Wigs -->
+  <section id="straight" class="page category">
+    <h3>Straight Wigs</h3>
+    <div class="product-list">
+      <div class="product-card">
+        <h4>Straight Full Frontal</h4>
+        <p>14 Inch | R1300</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="Straight Full Frontal" data-length="14 Inch" data-price="1300">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <h4>Sleek Long Straight</h4>
+        <p>20 Inch | R2100</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="Sleek Long Straight" data-length="20 Inch" data-price="2100">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curly Wigs -->
+  <section id="curly" class="page category">
+    <h3>Curly Wigs</h3>
+    <div class="product-list">
+      <div class="product-card">
+        <h4>Water Wave</h4>
+        <p>16 Inch | R1500</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="Water Wave" data-length="16 Inch" data-price="1500">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <h4>Deep Curl</h4>
+        <p>18 Inch | R1700</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="Deep Curl" data-length="18 Inch" data-price="1700">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- T-Part Wigs -->
+  <section id="tpart" class="page category">
+    <h3>T‑Part Wigs</h3>
+    <div class="product-list">
+      <div class="product-card">
+        <h4>T‑Part Classic</h4>
+        <p>12 Inch | R910</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="T‑Part Classic" data-length="12 Inch" data-price="910">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <h4>T‑Part Long</h4>
+        <p>20 Inch | R1350</p>
+        <input type="number" min="1" value="1" class="quantity">
+        <button class="btn add-to-cart" data-name="T‑Part Long" data-length="20 Inch" data-price="1350">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Hair Van Studio | <span class="powered">Powered by TechInOp</span></p>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
