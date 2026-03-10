@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Van Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loading Page -->
+  <div id="loading-page" class="d-flex flex-column justify-content-center align-items-center">
+    <h2 class="loading-text">Hair Van Studio</h2>
+    <div class="progress w-50">
+      <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" 
+           role="progressbar" style="width: 0%"></div>
+    </div>
+    <p class="mt-3">Loading your beauty experience...</p>
+    <p class="powered">Powered by TechInOp</p>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="d-none">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
+      <div class="container">
+        <a class="navbar-brand" href="#">Hair Van Studio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#straight">Straight Wigs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#curly">Curly Wigs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tpart">T-Part</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#cart">
+                Cart <span id="cart-count" class="badge bg-warning text-dark">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="hairCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/straight.jpg" class="d-block w-100" alt="Straight Wig">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Straight Elegance</h5>
+            <p>Classic sleek look for every occasion.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/curly.jpg" class="d-block w-100" alt="Curly Wig">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Curly Bounce</h5>
+            <p>Playful curls with natural volume.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/tpart.jpg" class="d-block w-100" alt="T-Part Wig">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>T-Part Style</h5>
+            <p>Affordable and stylish everyday wear.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#hairCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#hairCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Categories -->
+    <section id="straight" class="py-5">
+      <div class="container text-center">
+        <h2>Straight Wigs</h2>
+        <p>Lengths: 8–32 Inch | R990 – R3380</p>
+        <input type="number" min="1" value="1" class="form-control mb-2 quantity">
+        <button class="btn btn-gradient add-to-cart" 
+                data-name="Straight Full Frontal 13*4" 
+                data-length="14 Inch" 
+                data-price="1300">Add to Cart</button>
+      </div>
+    </section>
+
+    <section id="curly" class="py-5 bg-light">
+      <div class="container text-center">
+        <h2>Curly Wigs</h2>
+        <p>Lengths: 10–30 Inch | R1100 – R3300</p>
+        <input type="number" min="1" value="1" class="form-control mb-2 quantity">
+        <button class="btn btn-gradient add-to-cart" 
+                data-name="Water Wave / Jelly Curly" 
+                data-length="16 Inch" 
+                data-price="1500">Add to Cart</button>
+      </div>
+    </section>
+
+    <section id="tpart" class="py-5">
+      <div class="container text-center">
+        <h2>T-Part Wigs</h2>
+        <p>Lengths: 10–24 Inch | R850 – R1550</p>
+        <input type="number" min="1" value="1" class="form-control mb-2 quantity">
+        <button class="btn btn-gradient add-to-cart" 
+                data-name="T-Part Wig" 
+                data-length="12 Inch" 
+                data-price="910">Add to Cart</button>
+      </div>
+    </section>
+
+    <!-- Cart -->
+    <section id="cart" class="py-5 bg-light">
+      <div class="container text-center">
+        <h2>Your Cart</h2>
+        <ul id="cart-items" class="list-group mb-3"></ul>
+        <h4 id="cart-total">Total: R0</h4>
+        <div class="d-flex justify-content-center gap-3">
+          <button id="clear-cart" class="btn btn-warning">Clear Cart</button>
+          <button id="checkout" class="btn btn-gradient">Checkout via WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5 bg-light">
+      <div class="container text-center">
+        <h2>Contact Us</h2>
+        <p>Phone/WhatsApp: 071 087 2490</p>
+        <p>Location: Ladysmith Town</p>
+        <p>Nationwide Courier Service Available</p>
+        <a href="tel:0710872490" class="btn btn-gradient">Call Now</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 bg-gradient text-white">
+      <p>&copy; 2026 Hair Van Studio | Powered by TechInOp</p>
+    </footer>
+  </div>
+
+  <!-- Floating Cart Icon -->
+  <div id="floating-cart" onclick="scrollToCart()">
+    🛍️ <span id="floating-cart-count">0</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
 
