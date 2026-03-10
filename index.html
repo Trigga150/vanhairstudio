@@ -3,60 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair Van Studio | Home</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <!-- CSS -->
+  <title>Hair Van Studio | Loading</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Loading Screen (only shows first visit) -->
+  <!-- Loading Screen -->
   <div id="loading-page" class="d-flex flex-column justify-content-center align-items-center">
     <h2 class="loading-text">Hair Van Studio</h2>
     <div class="progress w-50">
-      <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" 
-           role="progressbar" style="width: 0%"></div>
+      <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
     </div>
     <p class="mt-3">Loading your beauty experience...</p>
     <p class="powered">Powered by TechInOp</p>
   </div>
 
-  <!-- Main Content -->
-  <div id="main-content" class="d-none">
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="container">
-        <a href="index.html" class="brand">Hair Van Studio</a>
-        <ul class="menu">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="cart.html">Cart</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-      <h1>Welcome to Hair Van Studio</h1>
-      <p>Luxury wigs, nationwide delivery, powered by TechInOp.</p>
-      <a href="products.html" class="btn">Shop Now</a>
-    </header>
-
-    <!-- Highlights -->
-    <section class="page">
-      <h2>Why Choose Us?</h2>
-      <p>We provide premium straight, curly, and T‑Part wigs with nationwide courier service. Our mission is to bring beauty and confidence to every client.</p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2026 Hair Van Studio | <span class="powered">Powered by TechInOp</span></p>
-    </footer>
-  </div>
-
-  <!-- Script -->
-  <script src="script.js"></script>
+  <script>
+    // Progress animation then redirect to home.html
+    let progress = 0;
+    let progressBar = document.getElementById("progress-bar");
+    let interval = setInterval(() => {
+      progress += 20;
+      progressBar.style.width = progress + "%";
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          localStorage.setItem("visited", "true"); // mark as visited
+          window.location.replace("home.html");    // redirect to homepage
+        }, 500);
+      }
+    }, 500);
+  </script>
 </body>
 </html>
->
+
