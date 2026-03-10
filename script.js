@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let mainContent = document.getElementById("main-content");
   let progressBar = document.getElementById("progress-bar");
 
-  // Show loading screen only once
-  if (loadingPage && progressBar && mainContent) {
+  if (loadingPage && progressBar) {
     if (!localStorage.getItem("visited")) {
       let progress = 0;
       let interval = setInterval(() => {
@@ -16,16 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (progress >= 100) {
           clearInterval(interval);
           setTimeout(() => {
-            loadingPage.classList.add("d-none");
-            mainContent.classList.remove("d-none");
             localStorage.setItem("visited", "true"); // mark as visited
+            window.location.href = "index.html"; // redirect to Home page
           }, 500);
         }
       }, 500);
     } else {
-      // Skip loading screen
-      loadingPage.classList.add("d-none");
-      mainContent.classList.remove("d-none");
+      // Skip loading screen if already visited
+      if (loadingPage) loadingPage.classList.add("d-none");
+      if (mainContent) mainContent.classList.remove("d-none");
     }
   }
 });
