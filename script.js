@@ -16,14 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(interval);
           setTimeout(() => {
             localStorage.setItem("visited", "true"); // mark as visited
-            window.location.href = "index.html"; // redirect to Home page
+            // Redirect to Home page
+            window.location.href = "index.html";
           }, 500);
         }
       }, 500);
     } else {
       // Skip loading screen if already visited
       if (loadingPage) loadingPage.classList.add("d-none");
-      if (mainContent) mainContent.classList.remove("d-none");
+      if (mainContent) {
+        mainContent.classList.remove("d-none");
+        mainContent.classList.add("fade-in"); // add fade-in animation
+      }
     }
   }
 });
@@ -142,3 +146,4 @@ if (checkoutBtn) {
     window.open(whatsappUrl, "_blank");
   });
 }
+
