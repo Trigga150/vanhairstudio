@@ -235,4 +235,17 @@ footer .powered {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+.carousel-item img {
+  height: 500px;
+  object-fit: cover;
+}
+.carousel-caption h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #ffe082;
+}
+.carousel-caption p {
+  color: #fff;
+  font-size: 1.2rem;
+}
 
