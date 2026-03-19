@@ -1,4 +1,6 @@
-/* Global Reset */
+/* =====================
+   Global Reset & Base
+===================== */
 * {
   margin: 0;
   padding: 0;
@@ -9,12 +11,74 @@ body {
   background: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* Navbar */
+/* =====================
+   Loading Page (index.html)
+===================== */
+#loading-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #2c5364, #1c92d2);
+  color: #ffe082;
+  animation: gradientShift 6s infinite alternate;
+}
+
+.loading-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  width: 60%;
+  margin-top: 1rem;
+}
+.progress-bar {
+  background: #ffe082;
+  height: 100%;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.powered {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes gradientShift {
+  0% { background: linear-gradient(135deg, #0f2027, #2c5364); }
+  100% { background: linear-gradient(135deg, #1c92d2, #2c5364); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================
+   Navbar
+===================== */
 .navbar {
   background: linear-gradient(90deg, #0f2027, #2c5364);
   padding: 1rem;
+  animation: slideDown 0.8s ease;
 }
 .navbar .brand {
   font-family: 'Orbitron', sans-serif;
@@ -31,17 +95,29 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s ease;
+}
+.navbar .menu li a:hover {
+  color: #ffe082;
 }
 .navbar .menu li a.active {
   color: #ffe082;
 }
 
-/* Hero Section */
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* =====================
+   Hero Section
+===================== */
 .hero {
   background: url('images/hero-bg.jpg') center/cover no-repeat;
   text-align: center;
   padding: 5rem 2rem;
   color: #fff;
+  animation: fadeIn 1.5s ease-in-out;
 }
 .hero h1 {
   font-family: 'Playfair Display', serif;
@@ -60,25 +136,16 @@ body {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 .hero .btn:hover {
   background: #ffca28;
+  transform: scale(1.1);
 }
 
-/* Page Sections */
-.page {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-}
-.page h2 {
-  font-family: 'Playfair Display', serif;
-  color: #2c5364;
-  margin-bottom: 1rem;
-}
-
-/* Product Grid */
+/* =====================
+   Product Grid
+===================== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -86,12 +153,12 @@ body {
   margin: 2rem 0;
 }
 .card {
-  background: linear-gradient(90deg, #0f2027, #2c5364);
+  background: linear-gradient(135deg, #0f2027, #2c5364);
   color: #ffe082;
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card img {
   width: 100%;
@@ -99,14 +166,9 @@ body {
   object-fit: cover;
   border-radius: 8px;
 }
-.card h3 {
-  margin: 0.5rem 0;
-}
-.card p {
-  font-size: 0.9rem;
-}
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 .card .btn {
   margin-top: 0.5rem;
@@ -116,62 +178,38 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 .card .btn:hover {
   background: #ffca28;
+  transform: scale(1.05);
 }
 
-/* Product Selector */
-.form-select, input[type="number"], input[type="checkbox"] {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-#wig-price {
-  font-weight: bold;
-  color: #2c5364;
-  margin: 1rem 0;
-}
-#add-to-cart {
-  background: #2c5364;
-  color: #ffe082;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#add-to-cart:hover {
-  background: #0f2027;
-}
-
-/* Carousel */
-.carousel-item img,
-.carousel-item video {
-  height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.carousel-caption h5 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: #ffe082;
-}
-.carousel-caption p {
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-/* Cart Page */
-#cart-straight, #cart-curly, #cart-tpart {
-  list-style: none;
-  padding: 0;
-}
-#cart-straight li, #cart-curly li, #cart-tpart li {
+/* =====================
+   Cart Page
+===================== */
+#cart-list li {
   background: #e0f2f1;
   margin: 0.5rem 0;
   padding: 0.5rem;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+.btn-remove {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-remove:hover {
+  background: #b71c1c;
+  transform: scale(1.1);
 }
 #cart-total {
   font-size: 1.2rem;
@@ -179,23 +217,17 @@ body {
   margin-top: 1rem;
 }
 
-/* Footer */
+/* =====================
+   Footer
+===================== */
 footer {
   background: #2c5364;
   color: #fff;
   text-align: center;
   padding: 1rem;
   margin-top: 2rem;
+  animation: fadeIn 1s ease-in-out;
 }
 footer .powered {
   color: #ffe082;
-}
-
-/* Fade-in Animation */
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
