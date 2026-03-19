@@ -24,6 +24,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+// =====================
+// Cart Page Rendering (cart.html)
+// =====================
+function renderCart() {
+  let cartList = document.getElementById("cart-list");
+  let totalElement = document.getElementById("cart-total");
+
+  if (!cartList || !totalElement) return;
+
+  cartList.innerHTML = ""; // clear old list
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    let li = document.createElement("li");
+    li.textContent = `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}`;
+
+    // Remove button
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.classList.add("btn-remove");
+    removeBtn.addEventListener("click", () => {
+      cart.splice(index, 1); // remove item
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart(); // re-render cart
+      updateCartCount();
+    });
+
+    li.appendChild(removeBtn);
+    cartList.appendChild(li);
+
+    total += item.price * item.quantity;
+  });
+
+  totalElement.textContent = `Total: R${total}`;
+}
+renderCart();
+
 
 // =====================
 // Price List Data
