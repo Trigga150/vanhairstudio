@@ -188,21 +188,32 @@ body {
 /* =====================
    Cart Page
 ===================== */
+#cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem auto;
+  max-width: 700px;
+}
 #cart-list li {
-  background: #e0f2f1;
+  background: #ffffff;
   margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 5px;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: fadeIn 0.5s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.5s ease;
+}
+#cart-list li span {
+  font-weight: 500;
+  color: #2c5364;
 }
 .btn-remove {
   background: #c62828;
   color: #fff;
   border: none;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
@@ -212,11 +223,54 @@ body {
   transform: scale(1.1);
 }
 #cart-total {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin-top: 1rem;
+  color: #2c5364;
 }
 
+/* =====================
+   Buttons
+===================== */
+.btn {
+  background: #2c5364;
+  color: #ffe082;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: #0f2027;
+  transform: scale(1.05);
+}
+
+/* =====================
+   Floating Cart Icon
+===================== */
+#floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2c5364;
+  color: #ffe082;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: bounce 2s infinite;
+}
+#floating-cart-count {
+  background: #ffe082;
+  color: #333;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
+  font-weight: bold;
+}
 /* =====================
    Footer
 ===================== */
