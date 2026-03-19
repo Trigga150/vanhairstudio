@@ -1,5 +1,5 @@
 // =====================
-// Loading Screen Logic
+// Loading Screen Logic (index.html)
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
   let loadingPage = document.getElementById("loading-page");
@@ -16,18 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(interval);
           setTimeout(() => {
             localStorage.setItem("visited", "true"); // mark as visited
-            // Redirect to Home page
-            window.location.href = "index.html";
+            window.location.replace("home.html");    // redirect to homepage
           }, 500);
         }
       }, 500);
     } else {
       // Skip loading screen if already visited
-      if (loadingPage) loadingPage.classList.add("d-none");
-      if (mainContent) {
-        mainContent.classList.remove("d-none");
-        mainContent.classList.add("fade-in"); // add fade-in animation
-      }
+      window.location.replace("home.html");
     }
   }
 });
@@ -37,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // =====================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Add to Cart
+// Add to Cart (for product selector buttons)
 document.querySelectorAll(".add-to-cart").forEach(button => {
   button.addEventListener("click", () => {
     let name = button.dataset.name;
