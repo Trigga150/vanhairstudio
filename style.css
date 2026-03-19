@@ -12,8 +12,8 @@ body {
   color: #333;
   line-height: 1.6;
   animation: fadeIn 1s ease-in-out;
+  text-align: center; /* Center content globally */
 }
-
 /* =====================
    Loading Page (index.html)
 ===================== */
