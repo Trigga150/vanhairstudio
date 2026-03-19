@@ -3,79 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Van Hair Studio | Products</title>
-  <!-- Google Fonts -->
+  <title>Hair Van Studio | Products & Cart</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="container">
-      <a href="home.html" class="brand">Van Hair Studio</a>
-      <ul class="menu">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
-        <li><a href="cart.html">Cart</a></li>
-      </ul>
-    </div>
+    <a href="home.html" class="brand">Hair Van Studio</a>
+    <ul class="menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="products-cart.html" class="active">Products & Cart</a></li>
+    </ul>
   </nav>
 
-  <!-- Product Grid -->
+  <!-- Products Section -->
   <section class="page">
     <h2>Our Wig Collections</h2>
     <div class="grid">
-      <!-- Straight Wig -->
       <div class="card">
         <img src="images/straight-wig.jpg" alt="Straight Wig">
         <h3>Straight Full Frontal</h3>
         <p>Elegant sleek styles</p>
-        <button class="quick-add btn" 
-                data-type="straight" 
-                data-inch="12" 
-                data-price="1150">Quick Add (12")</button>
+        <button class="quick-add btn" data-type="straight" data-inch="12" data-price="1150">Quick Add (12")</button>
       </div>
-      <!-- Curly Wig -->
       <div class="card">
         <img src="images/curly-wig.jpg" alt="Curly Wig">
         <h3>Water Wave / Jelly Curly</h3>
         <p>Bold curls, full of confidence</p>
-        <button class="quick-add btn" 
-                data-type="curly" 
-                data-inch="14" 
-                data-price="1300">Quick Add (14")</button>
+        <button class="quick-add btn" data-type="curly" data-inch="14" data-price="1300">Quick Add (14")</button>
       </div>
-      <!-- T-Part Wig -->
       <div class="card">
         <img src="images/tpart-wig.jpg" alt="T-Part Wig">
         <h3>T-Part Wig</h3>
         <p>Affordable everyday beauty</p>
-        <button class="quick-add btn" 
-                data-type="tpart" 
-                data-inch="12" 
-                data-price="910">Quick Add (12")</button>
-      </div>
-      <!-- Closure Wig -->
-      <div class="card">
-        <img src="images/closure-wig.jpg" alt="Closure Wig">
-        <h3>4x4 Closure Wig</h3>
-        <p>Glueless comfort</p>
-        <button class="quick-add btn" 
-                data-type="closure" 
-                data-inch="12" 
-                data-price="1050">Quick Add (12")</button>
-      </div>
-      <!-- Glueless Wig -->
-      <div class="card">
-        <img src="images/glueless-wig.jpg" alt="Glueless Wig">
-        <h3>Glueless Straight Wig</h3>
-        <p>Easy wear, natural look</p>
-        <button class="quick-add btn" 
-                data-type="glueless" 
-                data-inch="12" 
-                data-price="1000">Quick Add (12")</button>
+        <button class="quick-add btn" data-type="tpart" data-inch="12" data-price="910">Quick Add (12")</button>
       </div>
     </div>
   </section>
@@ -106,12 +68,25 @@
     <button id="add-to-cart" class="btn">Add to Cart</button>
   </section>
 
+  <!-- Cart Section -->
+  <section class="page">
+    <h2>Your Cart</h2>
+    <ul id="cart-list"></ul>
+    <p id="cart-total">Total: R0</p>
+    <button id="clear-cart" class="btn">Clear Cart</button>
+    <button id="checkout" class="btn">Checkout via WhatsApp</button>
+  </section>
+
+  <!-- Floating Cart Icon -->
+  <div id="floating-cart">
+    🛒 <span id="floating-cart-count">0</span>
+  </div>
+
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Van Hair Studio | <span class="powered">Powered by TechInOp</span></p>
+    <p>&copy; 2026 Hair Van Studio | <span class="powered">Powered by TechInOp</span></p>
   </footer>
 
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
