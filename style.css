@@ -12,48 +12,197 @@ body {
   color: #333;
   line-height: 1.6;
   animation: fadeIn 1s ease-in-out;
-  text-align: center; /* Center content globally */
 }
 
 /* =====================
-   Page Sections
+   Loading Page (index.html)
 ===================== */
-.page {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
+#loading-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #2c5364, #1c92d2);
+  color: #ffe082;
+  animation: gradientShift 6s infinite alternate;
+}
+
+.loading-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  width: 60%;
+  margin-top: 1rem;
+}
+.progress-bar {
+  background: #ffe082;
+  height: 100%;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.powered {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes gradientShift {
+  0% { background: linear-gradient(135deg, #0f2027, #2c5364); }
+  100% { background: linear-gradient(135deg, #1c92d2, #2c5364); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* =====================
-   Cart Styling
+   Navbar
 ===================== */
-#cart-list {
+.navbar {
+  background: linear-gradient(90deg, #0f2027, #2c5364);
+  padding: 1rem;
+  animation: slideDown 0.8s ease;
+}
+.navbar .brand {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: #ffe082;
+  text-decoration: none;
+}
+.navbar .menu {
   list-style: none;
-  padding: 0;
-  margin: 1rem auto;
-  max-width: 700px;
+  display: flex;
+  gap: 1rem;
 }
-#cart-list li {
-  background: #ffffff;
-  margin: 0.5rem 0;
-  padding: 0.8rem 1rem;
+.navbar .menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.navbar .menu li a:hover {
+  color: #ffe082;
+}
+.navbar .menu li a.active {
+  color: #ffe082;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* =====================
+   Hero Section
+===================== */
+.hero {
+  background: url('images/hero-bg.jpg') center/cover no-repeat;
+  text-align: center;
+  padding: 5rem 2rem;
+  color: #fff;
+  animation: fadeIn 1.5s ease-in-out;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.hero .btn {
+  background: #ffe082;
+  color: #333;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.hero .btn:hover {
+  background: #ffca28;
+  transform: scale(1.1);
+}
+
+/* =====================
+   Product Grid
+===================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 2rem 0;
+}
+.card {
+  background: linear-gradient(135deg, #0f2027, #2c5364);
+  color: #ffe082;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 8px;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.card .btn {
+  margin-top: 0.5rem;
+  background: #ffe082;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.card .btn:hover {
+  background: #ffca28;
+  transform: scale(1.05);
+}
+
+/* =====================
+   Cart Page
+===================== */
+#cart-list li {
+  background: #e0f2f1;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  animation: fadeInUp 0.5s ease;
-}
-#cart-list li span {
-  font-weight: 500;
-  color: #2c5364;
+  animation: fadeIn 0.5s ease;
 }
 .btn-remove {
   background: #c62828;
   color: #fff;
   border: none;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
@@ -63,67 +212,22 @@ body {
   transform: scale(1.1);
 }
 #cart-total {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-top: 1rem;
-  color: #2c5364;
 }
 
 /* =====================
-   Buttons
+   Footer
 ===================== */
-.btn {
+footer {
   background: #2c5364;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+footer .powered {
   color: #ffe082;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0.5rem;
-  transition: all 0.3s ease;
-}
-.btn:hover {
-  background: #0f2027;
-  transform: scale(1.05);
-}
-
-/* =====================
-   Floating Cart Icon
-===================== */
-#floating-cart {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #2c5364;
-  color: #ffe082;
-  padding: 10px 15px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  animation: bounce 2s infinite;
-}
-#floating-cart-count {
-  background: #ffe082;
-  color: #333;
-  padding: 2px 6px;
-  border-radius: 50%;
-  margin-left: 5px;
-  font-weight: bold;
-}
-
-/* =====================
-   Animations
-===================== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
 }
