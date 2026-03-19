@@ -1,92 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Van Hair Studio | Products & Cart</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="home.html" class="brand">Van Hair Studio</a>
-    <ul class="menu">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="products-cart.html" class="active">Products & Cart</a></li>
-    </ul>
-  </nav>
+// =====================
+// Loading Screen Logic (index.html)
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingPage = document.getElementById("loading-page");
+  const progressBar = document.getElementById("progress-bar");
 
-  <!-- Products Section -->
-  <section class="page">
-    <h2>Our Wig Collections</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="images/straight-wig.jpg" alt="Straight Wig">
-        <h3>Straight Full Frontal</h3>
-        <p>Elegant sleek styles</p>
-        <button class="quick-add btn" data-type="straight" data-inch="12" data-price="1150">Quick Add (12")</button>
-      </div>
-      <div class="card">
-        <img src="images/curly-wig.jpg" alt="Curly Wig">
-        <h3>Water Wave / Jelly Curly</h3>
-        <p>Bold curls, full of confidence</p>
-        <button class="quick-add btn" data-type="curly" data-inch="14" data-price="1300">Quick Add (14")</button>
-      </div>
-      <div class="card">
-        <img src="images/tpart-wig.jpg" alt="T-Part Wig">
-        <h3>T-Part Wig</h3>
-        <p>Affordable everyday beauty</p>
-        <button class="quick-add btn" data-type="tpart" data-inch="12" data-price="910">Quick Add (12")</button>
-      </div>
-    </div>
-  </section>
+  if (loadingPage && progressBar) {
+    if (!localStorage.getItem("visited")) {
+      let progress = 0;
+      let interval = setInterval(() => {
+        progress += 20;
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            localStorage.setItem("visited", "true");
+            window.location.replace("home.html"); // redirect to homepage
+          }, 500);
+        }
+      }, 500);
+    } else {
+      window.location.replace("home.html"); // skip loading if already visited
+    }
+  }
+});
 
-  <!-- Product Selector -->
-  <section class="page">
-    <h2>Customize Your Wig</h2>
-    <label for="wig-type">Select Type:</label>
-    <select id="wig-type" class="form-select">
-      <option value="straight">Straight Full Frontal</option>
-      <option value="curly">Water Wave / Jelly Curly</option>
-      <option value="tpart">T-Part Wig</option>
-      <option value="closure">4x4 Closure Wig</option>
-      <option value="glueless">Glueless Straight Wig</option>
-    </select>
+// =====================
+// Price List Data
+// =====================
+const wigPrices = {
+  straight: { "8": 990, "10": 1050, "12": 1150, "14": 1300, "16": 1500,
+              "18": 1700, "20": 1800, "22": 2100, "24": 2200, "26": 2800,
+              "28": 2800, "30": 3200, "32": 3850 },
+  curly:   { "10": 1100, "12": 1200, "14": 1300, "16": 1500, "18": 1700,
+              "20": 1900, "22": 2200, "24": 2500, "26": 2800, "28": 3000,
+              "30": 3300 },
+  tpart:   { "10": 850, "12": 910, "14": 980, "16": 1110, "18": 1250,
+              "20": 1370, "22": 1470, "24": 1550 },
+  closure: { "8": 850, "10": 950, "12": 1050, "14": 1150, "16": 1270,
+              "18": 1450, "20": 1600, "22": 1700, "24": 1800 },
+  glueless:{ "10": 950, "12": 1000, "14": 1100, "16": 1350,
+              "18": 1450, "20": 1580, "22": 1700 }
+};
 
-    <label for="wig-inch">Select Length (Inches):</label>
-    <select id="wig-inch" class="form-select"></select>
+// =====================
+// Cart Logic
+// =====================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    <label for="wig-color">Add Color (+R100):</label>
-    <input type="checkbox" id="wig-color">
+function updateCartCount() {
+  let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  let cartCount = document.getElementById("cart-count");
+  let floatingCount = document.getElementById("floating-cart-count");
+  if (cartCount) cartCount.textContent = count;
+  if (floatingCount) floatingCount.textContent = count;
+}
+updateCartCount();
 
-    <p id="wig-price">Price: R0</p>
+// =====================
+// Product Selector Logic
+// =====================
+const typeSelect = document.getElementById("wig-type");
+const inchSelect = document.getElementById("wig-inch");
+const priceDisplay = document.getElementById("wig-price");
+const qtyInput = document.getElementById("wig-qty");
+const addBtn = document.getElementById("add-to-cart");
+const colorCheckbox = document.getElementById("wig-color");
 
-    <label for="wig-qty">Quantity:</label>
-    <input type="number" id="wig-qty" min="1" value="1">
+function updateInches() {
+  if (!inchSelect || !typeSelect) return;
+  inchSelect.innerHTML = "";
+  const selectedType = typeSelect.value;
+  const lengths = Object.keys(wigPrices[selectedType]);
+  lengths.forEach(len => {
+    let opt = document.createElement("option");
+    opt.value = len;
+    opt.textContent = `${len} Inch`;
+    inchSelect.appendChild(opt);
+  });
+  updatePrice();
+}
 
-    <button id="add-to-cart" class="btn">Add to Cart</button>
-  </section>
+function updatePrice() {
+  if (!typeSelect || !inchSelect) return;
+  const type = typeSelect.value;
+  const inch = inchSelect.value;
+  let price = wigPrices[type][inch];
+  if (colorCheckbox && colorCheckbox.checked) {
+    price += 100;
+  }
+  if (priceDisplay) priceDisplay.textContent = `Price: R${price}`;
+}
 
-  <!-- Cart Section -->
-  <section class="page">
-    <h2>Your Cart</h2>
-    <ul id="cart-list"></ul>
-    <p id="cart-total">Total: R0</p>
-    <button id="clear-cart" class="btn">Clear Cart</button>
-    <button id="checkout" class="btn">Checkout via WhatsApp</button>
-  </section>
+if (addBtn) {
+  addBtn.addEventListener("click", () => {
+    const type = typeSelect.value;
+    const inch = inchSelect.value;
+    let price = wigPrices[type][inch];
+    if (colorCheckbox.checked) {
+      price += 100;
+    }
+    const qty = parseInt(qtyInput.value);
 
-  <!-- Floating Cart Icon -->
-  <div id="floating-cart">
-    🛒 <span id="floating-cart-count">0</span>
-  </div>
+    let item = {
+      name: type,
+      length: `${inch} Inch`,
+      price: price,
+      quantity: qty,
+      color: colorCheckbox.checked ? "Colored" : "Natural"
+    };
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Hair Van Studio | <span class="powered">Powered by TechInOp</span></p>
-  </footer>
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart(); // instantly update cart list
+    alert(`${qty} x ${type} (${inch} Inch, ${item.color}) added to cart!`);
+  });
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+if (typeSelect) {
+  typeSelect.addEventListener("change", updateInches);
+  inchSelect.addEventListener("change", updatePrice);
+  colorCheckbox.addEventListener("change", updatePrice);
+  updateInches();
+}
+
+// =====================
+// Quick Add Buttons
+// =====================
+document.querySelectorAll(".quick-add").forEach(button => {
+  button.addEventListener("click", () => {
+    const type = button.dataset.type;
+    const inch = button.dataset.inch;
+    const price = parseFloat(button.dataset.price);
+
+    let item = {
+      name: type,
+      length: `${inch} Inch`,
+      price: price,
+      quantity: 1,
+      color: "Natural"
+    };
+
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    renderCart(); // instantly update cart list
+    alert(`1 x ${type} (${inch} Inch) added to cart!`);
+  });
+});
+
+// =====================
+// Cart Page Rendering
+// =====================
+function renderCart() {
+  let cartList = document.getElementById("cart-list");
+  let totalElement = document.getElementById("cart-total");
+
+  if (!cartList || !totalElement) return;
+
+  cartList.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    let li = document.createElement("li");
+    li.textContent = `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}`;
+
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.classList.add("btn-remove");
+    removeBtn.addEventListener("click", () => {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    });
+
+    li.appendChild(removeBtn);
+    cartList.appendChild(li);
+
+    total += item.price * item.quantity;
+  });
+
+  totalElement.textContent = `Total: R${total}`;
+}
+renderCart();
+
+// =====================
+// Cart Actions
+// =====================
+const clearBtn = document.getElementById("clear-cart");
+if (clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+  });
+}
+
+const checkoutBtn = document.getElementById("checkout");
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+    let message = "Hello, I would like to order:\n";
+    cart.forEach(item => {
+      message += `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}\n`;
+    });
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    message += `\nTotal: R${total}`;
+
+    let whatsappUrl = `https://wa.me/27710872490?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  });
+}
