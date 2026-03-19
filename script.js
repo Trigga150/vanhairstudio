@@ -215,7 +215,7 @@ if (checkoutBtn) {
       alert("Your cart is empty!");
       return;
     }
-    let message = "Hello, I would like to order:\n";
+    let message = "Website purchase \nHello, I would like to order:\n";
     cart.forEach(item => {
       message += `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}\n`;
     });
