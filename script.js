@@ -29,28 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
 // Price List Data
 // =====================
 const wigPrices = {
-  straight: {
-    "8": 990, "10": 1050, "12": 1150, "14": 1300, "16": 1500,
-    "18": 1700, "20": 1800, "22": 2100, "24": 2200, "26": 2800,
-    "28": 2800, "30": 3200, "32": 3850
-  },
-  curly: {
-    "10": 1100, "12": 1200, "14": 1300, "16": 1500, "18": 1700,
-    "20": 1900, "22": 2200, "24": 2500, "26": 2800, "28": 3000,
-    "30": 3300
-  },
-  tpart: {
-    "10": 850, "12": 910, "14": 980, "16": 1110, "18": 1250,
-    "20": 1370, "22": 1470, "24": 1550
-  },
-  closure: {
-    "8": 850, "10": 950, "12": 1050, "14": 1150, "16": 1270,
-    "18": 1450, "20": 1600, "22": 1700, "24": 1800
-  },
-  glueless: {
-    "10": 950, "12": 1000, "14": 1100, "16": 1350,
-    "18": 1450, "20": 1580, "22": 1700
-  }
+  straight: { "8": 990, "10": 1050, "12": 1150, "14": 1300, "16": 1500,
+              "18": 1700, "20": 1800, "22": 2100, "24": 2200, "26": 2800,
+              "28": 2800, "30": 3200, "32": 3850 },
+  curly:   { "10": 1100, "12": 1200, "14": 1300, "16": 1500, "18": 1700,
+              "20": 1900, "22": 2200, "24": 2500, "26": 2800, "28": 3000,
+              "30": 3300 },
+  tpart:   { "10": 850, "12": 910, "14": 980, "16": 1110, "18": 1250,
+              "20": 1370, "22": 1470, "24": 1550 },
+  closure: { "8": 850, "10": 950, "12": 1050, "14": 1150, "16": 1270,
+              "18": 1450, "20": 1600, "22": 1700, "24": 1800 },
+  glueless:{ "10": 950, "12": 1000, "14": 1100, "16": 1350,
+              "18": 1450, "20": 1580, "22": 1700 }
 };
 
 // =====================
@@ -68,7 +58,7 @@ function updateCartCount() {
 updateCartCount();
 
 // =====================
-// Product Selector Logic (products.html)
+// Product Selector Logic
 // =====================
 const typeSelect = document.getElementById("wig-type");
 const inchSelect = document.getElementById("wig-inch");
@@ -122,8 +112,9 @@ if (addBtn) {
 
     cart.push(item);
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${qty} x ${type} (${inch} Inch, ${item.color}) added to cart!`);
     updateCartCount();
+    renderCart(); // instantly update cart list
+    alert(`${qty} x ${type} (${inch} Inch, ${item.color}) added to cart!`);
   });
 }
 
@@ -135,7 +126,7 @@ if (typeSelect) {
 }
 
 // =====================
-// Quick Add Buttons (products.html)
+// Quick Add Buttons
 // =====================
 document.querySelectorAll(".quick-add").forEach(button => {
   button.addEventListener("click", () => {
@@ -153,13 +144,14 @@ document.querySelectorAll(".quick-add").forEach(button => {
 
     cart.push(item);
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`1 x ${type} (${inch} Inch) added to cart!`);
     updateCartCount();
+    renderCart(); // instantly update cart list
+    alert(`1 x ${type} (${inch} Inch) added to cart!`);
   });
 });
 
 // =====================
-// Cart Page Rendering (cart.html)
+// Cart Page Rendering
 // =====================
 function renderCart() {
   let cartList = document.getElementById("cart-list");
@@ -174,7 +166,6 @@ function renderCart() {
     let li = document.createElement("li");
     li.textContent = `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}`;
 
-    // Remove button
     let removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.classList.add("btn-remove");
@@ -215,7 +206,7 @@ if (checkoutBtn) {
       alert("Your cart is empty!");
       return;
     }
-    let message = "Website purchase \nHello, I would like to order:\n";
+    let message = "Hello, I would like to order:\n";
     cart.forEach(item => {
       message += `${item.quantity} x ${item.name} (${item.length}, ${item.color}) - R${item.price * item.quantity}\n`;
     });
