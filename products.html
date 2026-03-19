@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair Van Studio | Products</title>
+  <title>Van Hair Studio | Products</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <!-- CSS -->
@@ -13,7 +13,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
-      <a href="home.html" class="brand">Hair Van Studio</a>
+      <a href="home.html" class="brand">Van Hair Studio</a>
       <ul class="menu">
         <li><a href="home.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -32,30 +32,50 @@
         <img src="images/straight-wig.jpg" alt="Straight Wig">
         <h3>Straight Full Frontal</h3>
         <p>Elegant sleek styles</p>
+        <button class="quick-add btn" 
+                data-type="straight" 
+                data-inch="12" 
+                data-price="1150">Quick Add (12")</button>
       </div>
       <!-- Curly Wig -->
       <div class="card">
         <img src="images/curly-wig.jpg" alt="Curly Wig">
         <h3>Water Wave / Jelly Curly</h3>
         <p>Bold curls, full of confidence</p>
+        <button class="quick-add btn" 
+                data-type="curly" 
+                data-inch="14" 
+                data-price="1300">Quick Add (14")</button>
       </div>
       <!-- T-Part Wig -->
       <div class="card">
         <img src="images/tpart-wig.jpg" alt="T-Part Wig">
         <h3>T-Part Wig</h3>
         <p>Affordable everyday beauty</p>
+        <button class="quick-add btn" 
+                data-type="tpart" 
+                data-inch="12" 
+                data-price="910">Quick Add (12")</button>
       </div>
       <!-- Closure Wig -->
       <div class="card">
         <img src="images/closure-wig.jpg" alt="Closure Wig">
         <h3>4x4 Closure Wig</h3>
         <p>Glueless comfort</p>
+        <button class="quick-add btn" 
+                data-type="closure" 
+                data-inch="12" 
+                data-price="1050">Quick Add (12")</button>
       </div>
       <!-- Glueless Wig -->
       <div class="card">
         <img src="images/glueless-wig.jpg" alt="Glueless Wig">
         <h3>Glueless Straight Wig</h3>
         <p>Easy wear, natural look</p>
+        <button class="quick-add btn" 
+                data-type="glueless" 
+                data-inch="12" 
+                data-price="1000">Quick Add (12")</button>
       </div>
     </div>
   </section>
@@ -63,8 +83,6 @@
   <!-- Product Selector -->
   <section class="page">
     <h2>Customize Your Wig</h2>
-
-    <!-- Type Selector -->
     <label for="wig-type">Select Type:</label>
     <select id="wig-type" class="form-select">
       <option value="straight">Straight Full Frontal</option>
@@ -74,28 +92,23 @@
       <option value="glueless">Glueless Straight Wig</option>
     </select>
 
-    <!-- Inch Selector -->
     <label for="wig-inch">Select Length (Inches):</label>
     <select id="wig-inch" class="form-select"></select>
 
-    <!-- Color Option -->
     <label for="wig-color">Add Color (+R100):</label>
     <input type="checkbox" id="wig-color">
 
-    <!-- Price Display -->
     <p id="wig-price">Price: R0</p>
 
-    <!-- Quantity -->
     <label for="wig-qty">Quantity:</label>
     <input type="number" id="wig-qty" min="1" value="1">
 
-    <!-- Add to Cart -->
     <button id="add-to-cart" class="btn">Add to Cart</button>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Hair Van Studio | <span class="powered">Powered by TechInOp</span></p>
+    <p>&copy; 2026 Van Hair Studio | <span class="powered">Powered by TechInOp</span></p>
   </footer>
 
   <!-- Script -->
